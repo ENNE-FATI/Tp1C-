@@ -1,49 +1,44 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int main() {
     int L, C;
-
-    cout << "Le nombre de lignes : ";
+    cout << "Le nombre de lignes sont: ";
     cin >> L;
-
-    cout << "Le nombre de colonnes : ";
+    cout << "Le nombre de colonnes sont: ";
     cin >> C;
 
-    vector<vector<int>> tab(L, vector<int>(C));
+    int tab[L][C];
 
-    // Saisie de la matrice
     for (int i = 0; i < L; i++) {
         for (int j = 0; j < C; j++) {
-            cout << "Élément [" << i << "][" << j << "] : ";
+            cout << "Element [" << i << "][" << j << "] : ";
             cin >> tab[i][j];
         }
     }
 
     int maxSomme = 0;
-    vector<int> ligneMax;
+    int ligneMax[C];
 
-    // Recherche de la ligne avec la somme maximale
     for (int i = 0; i < L; i++) {
         int somme = 0;
         for (int j = 0; j < C; j++) {
             somme += tab[i][j];
         }
-
         if (somme > maxSomme) {
             maxSomme = somme;
-            ligneMax = tab[i];  // Sauvegarde de la ligne
+            for (int j = 0; j < C; j++) {
+                ligneMax[j] = tab[i][j];
+            }
         }
     }
 
-    // Affichage du résultat
     cout << "La ligne avec la somme maximale est : [ ";
-    for (int val : ligneMax) {
-        cout << val << " ";
+    for (int j = 0; j < C; j++) {
+        cout << ligneMax[j] << " ";
     }
-    cout << "] avec une somme de : " << maxSomme << endl;
+    cout << "] avec une somme de : " << maxSomme;
 
     return 0;
 }
