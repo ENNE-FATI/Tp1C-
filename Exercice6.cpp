@@ -1,36 +1,30 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int main() {
-    int L, C;
+    int nombreLignes;
+    cout << "Entrez le nombre de lignes : ";
+    cin >> nombreLignes;
 
-    cout << "Le nombre de lignes : ";
-    cin >> L;
+    int taillesLignes[nombreLignes];
+    int tableau[nombreLignes][100];
 
-    vector<vector<int>> tab(L);
-
-    // Saisie de la matrice irrégulière
-    for (int i = 0; i < L; i++) {
-        cout << "Le nombre des colonnes pour la ligne " << i << " : ";
-        cin >> C;
-
-        tab[i].resize(C); // Allouer l'espace pour cette ligne
-
-        for (int j = 0; j < C; j++) {
-            cout << "Élément [" << i << "][" << j << "] : ";
-            cin >> tab[i][j];
+    for (int i = 0; i < nombreLignes; i++) {
+        cout << "Entrez la taille de la ligne " << (i + 1) << " : ";
+        cin >> taillesLignes[i];
+        cout << "Entrez les elements de la ligne " << (i + 1) << " : ";
+        for (int j = 0; j < taillesLignes[i]; j++) {
+            cin >> tableau[i][j];
         }
     }
 
-    // Calcul et affichage de la somme de chaque ligne
-    for (int i = 0; i < L; i++) {
+    for (int i = 0; i < nombreLignes; i++) {
         int somme = 0;
-        for (int j = 0; j < tab[i].size(); j++) {
-            somme += tab[i][j];
+        for (int j = 0; j < taillesLignes[i]; j++) {
+            somme += tableau[i][j];
         }
-        cout << "La somme de la ligne " << i << " est : " << somme << endl;
+        cout << "Somme de la ligne " << (i + 1) << " est : " << somme <<"\n";
     }
 
     return 0;
