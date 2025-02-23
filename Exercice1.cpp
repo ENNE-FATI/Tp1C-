@@ -1,36 +1,38 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int main() {
     int taille;
-
-    cout << "Veuillez saisir la taille du tableau: ";
+    cout << "Entrez la taille du tableau : ";
     cin >> taille;
+    int tableau[taille];
 
-    vector<int> tab(taille);
-
+    cout << "Entrez les elements du tableau :";
     for (int i = 0; i < taille; i++) {
-        cout << "Donnez l'element n° " << i << " : ";
-        cin >> tab[i];
+        cout << "L'element de "<< i << ":";
+        cin >> tableau[i];
     }
 
-    for (int i = 0; i < taille - 1; i++) {
-        int j = i + 1;
-        while (j < taille && tab[i] != tab[j]) {
-            j++;
-        }
-        bool exist = true;
-        for (int k = 0; k < i; k++) {
-            if (tab[k] == tab[i]) {
-                exist = false;
-                break;
+    int unique = 0;
+
+    for (int i = 0; i < taille; i++) {
+        int compteur = 0;
+        for (int j = 0; j < taille; j++) {
+            if (tableau[i] == tableau[j]) {
+                compteur++;
             }
         }
-        if (j == taille && exist) {
-            cout << tab[i] << endl;
+        if (compteur == 1) {
+            unique = tableau[i];
+            break;
         }
+    }
+
+    if (unique != 0) {
+        cout << "Le nombre unique est : " << unique;
+    } else {
+        cout << "Aucun nombre unique trouve dans le tableau.";
     }
 
     return 0;
