@@ -1,46 +1,34 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
 int main() {
-    int L, C;
+    int taille;
+    cout << "Entrez la taille du tableau carr    (N) : ";
+    cin >> taille;
 
-    cout << "Le nombre de lignes : ";
-    cin >> L;
+    int tableau[taille][taille];
+    int tailleCarree = taille * taille;
+    bool present[tailleCarree + 1] = false;
 
-    cout << "Le nombre de colonnes : ";
-    cin >> C;
-
-    vector<vector<int>> tab(L, vector<int>(C));
-
-    // Saisie de la matrice
-    for (int i = 0; i < L; i++) {
-        for (int j = 0; j < C; j++) {
-            cout << "Élément [" << i << "][" << j << "] : ";
-            cin >> tab[i][j];
+    cout << "Entrez les elements du tableau :" ;
+    for (int i = 0; i < taille; i++) {
+        for (int j = 0; j < taille; j++) {
+            cin >> tableau[i][j];
         }
     }
 
-    bool res = false;
-
-    // Vérification de la condition de permutation
-    for (int i = 0; i < L; i++) {
-        for (int j = 0; j < C - 1; j++) {
-            if (tab[i][j + 1] == tab[i][j] + 1) {
-                res = true;
-                break; // Sortir dès qu'on trouve une permutation
+    for (int i = 0; i < taille; i++) {
+        for (int j = 0; j < taille; j++) {
+            int nombre = tableau[i][j];
+            if (nombre < 1 || nombre > tailleCarree || present[nombre]) {
+                cout << "Ce n'est pas une permutation.";
+                return 0;
             }
+            present[nombre] = true;
         }
-        if (res) break; // Si on a trouvé, on arrête
     }
 
-    // Affichage du résultat
-    if (res) {
-        cout << "C'est une permutation." << endl;
-    } else {
-        cout << "Ce n'est pas une permutation." << endl;
-    }
-
+    cout << "C'est une permutation.";
     return 0;
 }
