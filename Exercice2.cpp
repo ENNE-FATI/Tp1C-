@@ -1,5 +1,4 @@
 #include <iostream>
-#include <vector>
 
 using namespace std;
 
@@ -12,18 +11,18 @@ int main() {
     cout << "Veuillez saisir la taille du tableau : ";
     cin >> taille;
 
-    vector<int> tab(taille);
+    int tab[taille];
 
     for (int i = 0; i < taille; i++) {
-        cout << "Donnez l'element n° " << i << " : ";
+        cout << "Donnez l'element nÂ° " << i << " : ";
         cin >> tab[i];
     }
 
-    cout << "Paires dont la somme est " << n << " : " << endl;
+    cout << "Paires dont la somme est " << n << " sont: ";
     for (int i = 0; i < taille; i++) {
         for (int j = i + 1; j < taille; j++) {
             if (tab[i] + tab[j] == n) {
-                cout << "(" << tab[i] << ", " << tab[j] << ")" << endl;
+                cout << "(" << tab[i] << ", " << tab[j] << ") ";
             }
         }
     }
